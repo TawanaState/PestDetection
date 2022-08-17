@@ -1,0 +1,116 @@
+body{
+    overflow: hidden;
+}
+::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+}
+::-webkit-scrollbar-corner {
+    background: none;
+}
+::-webkit-scrollbar-thumb {
+    border-radius: 8px;
+    background: #a3d4fc98;
+}
+::-webkit-scrollbar-track {
+    opacity: 0;
+}
+
+div.col-3{
+    margin: 0px;
+    padding: 0px;
+}
+.col-3 > .nav{
+    flex-direction: column;
+    width: 100%;
+}
+.col-3 > .nav-header{
+    width: 100%;
+}
+.col-3 > .nav > .nav-item{
+    cursor: pointer;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    margin-bottom: 15px;
+    border: none;
+    width: 100%;
+    font-weight: 500;
+    font-size: large;
+    color: rgb(173, 173, 173);
+    vertical-align: middle;
+    text-align: left;
+    vertical-align: -webkit-baseline-middle;
+    transition-property: all;
+    transition-delay: 0ms;
+    transition-timing-function: cubic-bezier(1, 0, 0, 1);
+    transition-duration: 0.2s;
+}
+.col-3 > .nav > .nav-item:hover{
+    color: white;
+}
+.col-3 .nav-footer{
+    position: absolute;
+    bottom: 0px;
+    left: 0px;
+    display: inline-flex;
+    flex-direction: column;
+    width: 25%;
+}
+.col-3 .nav-footer > div{
+    flex: 1;
+}
+.col-3 .nav-footer a{
+    text-decoration: none;
+    color: dodgerblue;
+}
+div.col{
+    margin: 0px;
+    padding: 0px;
+}
+.row{
+    height: 100vh;
+}
+.bg-light-dark{
+    background-color: var(--bs-gray-dark);
+}
+.bg-light-dark:focus{
+    background-color: var(--bs-gray-dark);
+}
+
+@media (max-width: 1200px) {
+    body > div > div.col-3.bg-dark.text-light{
+        display: none;
+    }
+    body > div > div.col{
+        width: 100%!important;
+    }
+    body > div > div.col > div.body.text-center.bg-light-dark > div.info.p-4.text-white{
+        width: 100%;
+    }
+}
+@media (min-width: 1200px) {
+    body > div > div.col-3.bg-dark.text-light{
+        display: none;
+    }
+    body > div > div.col{
+        width: 100%!important;
+    }
+    body > div > div.col > div.body.text-center.bg-light-dark > div.info.p-4.text-white{
+        width: 100%;
+    }
+}
+.hideShadow{
+    box-shadow: unset!important;
+}
+.transit{
+    transition-property: all;
+    transition-delay: 90ms;
+    transition-duration: 2s;
+    transition-timing-function: cubic-bezier(0.075, 0.82, 0.165, 1);
+}
+.slight-bg-dark{
+    background-color: #3b3e3d;
+}
+.text-gray{
+    color: rgb(185, 185, 185)!important;
+}
