@@ -1,0 +1,275 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://en.m.wikipedia.org/w/load.php?lang=en&amp;modules=ext.cite.styles%7Cext.relatedArticles.styles%7Cext.tmh.player.styles%7Cext.wikimediaBadges%7Cmediawiki.hlist%7Cmediawiki.page.gallery.styles%7Cmediawiki.ui.button%2Cicon%7Cmobile.init.styles%7Cskins.minerva.amc.styles%7Cskins.minerva.base.styles%7Cskins.minerva.content.styles.images%7Cskins.minerva.icons.wikimedia%7Cskins.minerva.mainMenu.icons%2Cstyles&amp;only=styles&amp;skin=minerva">
+    <link rel="stylesheet" href="../assets/vendor/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../assets/vendor/bootstrap-icons/bootstrap-icons.css">
+    <link rel="stylesheet" href="/assets/css/style.css">
+    <link rel="stylesheet" href="style.css">
+    <title>Document</title>
+</head>
+<body class="bg-light-dark transit">
+
+    <div class="row">
+        <div class="col">
+    
+            <div class="header p-2 bg-gradient-primary">
+                <a href="/" class="btn"><i class="bi bi-arrow-left fs-3 text-white"></i></a>
+                <h3 class="m-1 my-2">Pest Detection</h3>
+                <button class="btn text-white rounded-circle fs-3"><i class="bi bi-person-fill"></i></button>
+            </div>
+            <div class="body text-center bg-light-dark px-2">
+                <div class="img-container bg-light-dark p-3 text-center">
+                    <img style="max-width:90%;max-height:60vh;border:1px dashed aquamarine;" src="/assets/img/image_200px.png" alt="Image Here">
+                </div>
+                <div class="controls text-center">
+                    <button class="btn rounded-circle mx-2" onclick="toggleDialog(event)" data-bs-toggle="tooltip" data-bss-tooltip="" type="button"
+                    title="Pastes the image link"><i class="bi bi-link-45deg"></i></button>
+                    <button class="btn rounded-circle mx-2" onclick="$('#input-file-capture').trigger('click');" id="btn-capture"><i class="bi bi-camera"></i></button>
+                    <button class="btn rounded-circle mx-2"  onclick="$('#input-file').trigger('click');"><i class="bi bi-upload"></i></button>
+                    <input type="file" class="form-control d-none" id="input-file" accept="image/*" onchange="loadImage(event)">
+                    <input type="file" class="form-control d-none" name="image" id="input-file-capture" onchange="loadImage(event)" accept="image/*"
+                        capture="environment">
+                    <input class="form-control d-none" type="text" id="url-parser">
+    
+                    <div class="py-3 px-2 predictions text-white">
+                        <p align="center" class="items">
+                            
+                        </p>
+                    </div>
+                </div>
+    
+                <div class="info p-4 text-white" style="background-color:#464752;">
+                    <button class="btn m-0 hideShadow" id="btn-info-slide"><i
+                            class="bi fs-3 bi-chevron-up fw-700 text-white"></i></button>
+                    <div class="info-header">
+                        <h3>An Insect</h3>
+                        <button class="btn m-0 hideShadow" id="btn-share"><i class="bi bi-share fw-700 text-white"></i></button>
+                    </div>
+    
+    
+                    <div class="content p-0">
+                        <iframe src=""></iframe>
+                    </div>
+    
+                    <div class="comments p-3">
+                        <h3>Comments</h3>
+                        <div class="form-floating mb-3 bg-dark">
+                            <textarea class="form-control text-white" placeholder="Leave a comment here" id="floatingTextarea"
+                                style="height: 150px;background-color:#464752;border-color:#9fa2a5;"></textarea>
+                            <label for="floatingTextarea">Tell us what you think :)</label>
+                        </div>
+                        <p align="right"><button class="btn btn-outline-light px-4">Send</button></p>
+    
+                        <hr>
+    
+                        <div class="comment p-2 mb-2">
+                            <div class="comment-header d-inline-flex mb-2">
+                                <img class="comment-avatar" src="../assets/img/clients/client-2.png" alt="">
+                                <h5>Username</h5>
+                                <span class="fw-light">2 Aug 2020</span>
+                            </div>
+                            <p>the content here is big, said john doe, this will do</p>
+                            
+                        </div>
+    
+                        <div class="comment p-2 mb-2">
+                            <div class="comment-header d-inline-flex mb-2">
+                                <img class="comment-avatar" src="../assets/img/clients/client-2.png" alt="">
+                                <h5>Username</h5>
+                                <span class="fw-light">2 Aug 2020</span>
+                            </div>
+                            <p>the content here is big, said john doe, this will do</p>
+                        </div>
+    
+                    </div>
+                </div>
+    
+            </div>
+    
+        </div>
+    </div>
+
+
+    <div class="inputbox-link transit bg-light-dark text-white p-2 rounded-3 d-none">
+        <h2 align="center">Image Link</h2> <br>
+        <p class="text-center"><img src="/assets/img/portfolio/portfolio-6.jpg" alt="" style="max-width: 300px;min-width:100px;max-height:500px;min-height:100px;"></p>
+        <input class="form-control text-white" type="url" name="" id="img-url">
+        <div class="d-flex">
+            <button class="btn btn-outline-light m-3 px-4" onclick="useLinkImage(event)">OK</button>
+            <button class="btn btn-outline-light m-3 px-4" onclick="toggleDialog(event)">CANCEL</button>
+        </div>
+    </div>
+    
+    
+
+
+    <script src="../assets/vendor/jquery-3.6.0.js"></script>
+    <script src="../assets/vendor/bootstrap/js/bootstrap.min.js"></script>
+    <script src="../assets/js/script.js"></script>
+    <script src="../assets/js/labelTOvalue.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@2.7.0/dist/tf.min.js"></script>
+    <script src="/assets/js/predict.js"></script>
+    <script>
+
+        /* prediction = {
+            value : "",
+            key : 0
+        } */
+
+        
+        // INFO TOGGLE
+        document.querySelector("#btn-info-slide").addEventListener("click", event => {
+            if (event.target.classList.contains('bi-chevron-up')){
+                document.querySelector(".info").style.marginTop = "-75vh";
+                document.querySelector(".info").style.height = "90vh";
+                document.querySelector(".info").style.overflowY = "auto";
+                event.target.classList.remove('bi-chevron-up');
+                event.target.classList.add('bi-chevron-down');
+            } else if(event.target.classList.contains('bi-chevron-down')){
+                document.querySelector("div").classList.add()
+                document.querySelector(".info").style.marginTop = "1vh";
+                document.querySelector(".info").style.height = "13vh";
+                document.querySelector(".info").style.overflow = "hidden";
+                event.target.classList.remove('bi-chevron-down');
+                event.target.classList.add('bi-chevron-up');
+            }
+            
+        });
+
+        function refreshPrediction(){
+            document.querySelectorAll(".predictions > p > span").forEach((v, k, p) =>{
+                v.setAttribute("selected", "false");
+            });
+        }
+
+        function refreshPredictions(predictions){
+            document.querySelectorAll("predictions > span").forEach((v, k, p) =>{
+                v.remove();
+            });
+
+            predictions.forEach((v, k, p)=>{
+                let sp = document.createElement("span");
+                sp.innerText = v.value;
+                sp.setAttribute("key", v.key);
+                sp.setAttribute("selected", "false");
+                sp.addEventListener("click", e => {
+                    e.target.setAttribute("selected", "true");
+                });
+                
+                document.querySelector("predictions").appendChild(sp);
+            });
+        }
+
+        document.querySelectorAll(".predictions > p > span").forEach((v, k, p) =>{
+            v.addEventListener("click", event =>{
+                refreshPrediction();
+                event.target.setAttribute("selected", "true");
+                fetchWIKI(event.target.innerText);
+                //console.log("Clicked...");
+            });
+        });
+
+        async function scrapeWiki(url){
+            let returnval;
+            let xhr = new XMLHttpRequest();
+            xhr.open("GET", "https://cors-anywhere.herokuapp.com/" + url, true);
+            xhr.responseType = "document";
+            xhr.onload = function(){
+                if(xhr.readyState == 4 && xhr.status == 200)
+                {
+                    var response = xhr.responseXML.querySelector('#bodyContent');
+                    returnval = response;
+                }
+
+            };
+
+            xhr.onerror = function()
+            {
+                let ko = document.createElement('iframe');
+                ko.src = url;
+                ko.onload = function(){
+                    returnval =  ko.querySelector('#bodyContent');
+                }
+
+            };
+            xhr.send();
+        }
+
+        async function fetchWIKI(word){
+            document.querySelector('.info-header > h3').innerText = word;
+            let myobj = await WIKIobj(word);
+            console.log(myobj);
+
+            //document.querySelector('.info .content').innerHTML = "";
+           document.querySelector('iframe').src = `https://en.wikipedia.org/?curid=${myobj.query.search[0].pageid}`;
+           myobj.query.search.forEach(result => {
+                const url = `https://en.wikipedia.org/?curid=${result.pageid}`;
+                // Append the search result to the DOM
+                let aa = document.createElement('a');
+                aa.href = url;
+                aa.target = "_blank";
+                aa.rel = "noopener";
+                aa.innerText = result.title;
+                document.querySelector('.info .content').appendChild(aa);
+              });
+        }
+
+        document.addEventListener("DOMContentLoaded", (function () { [].slice.call(document.querySelectorAll("[data-bss-tooltip]")).map((function (t) { return new bootstrap.Tooltip(t) })) }), !1);
+
+        function toggleDialog(event){
+            let target = document.querySelector('body div.inputbox-link');
+            if (target.classList.contains('d-none')){
+                target.classList.remove('d-none');
+            } else{
+                target.classList.add('d-none');
+            }
+        }
+
+        function useLinkImage(event){
+            document.querySelector('.img-container img').src = document.querySelector('#img-url').value;
+            toggleDialog(event);
+        }
+        
+        async function loadImage(event){
+            let files = event.target.files;
+            //console.log('hiii');
+            if (files.length === 0){
+                console.log('No files selected');
+                return;
+            }
+            let reader = new FileReader();
+            reader.onload = async function(evt){
+                let img = document.querySelector("div.img-container > img");
+                img.src = await evt.target.result;
+                refreshPredictions(
+                    await AIYpredict(img)
+                );
+            };
+            reader.readAsDataURL(files[0]);
+        }
+
+        document.querySelector('#img-url').addEventListener("input", (event) => {
+            if (fileExists(event.target.value) == false){
+                //alert('help');
+            } else{
+                document.querySelector('body > div.inputbox-link.transit.bg-light-dark.text-white.p-2.rounded-3 > p > img').src = event.target.value;
+            }
+        });
+
+        document.querySelector('iframe').addEventListener('load', event => {
+                try{event.target.contentDocument.querySelector('header').remove();}catch{};
+                try{event.target.contentDocument.querySelector('footer').remove();}catch{};
+                
+                try{event.target.contentDocument.querySelector('main > .banner-container').remove();}catch{};
+                try{event.target.contentDocument.querySelector('main > .pre-content').remove();}catch{};
+
+                try{event.target.contentDocument.querySelector('#bodyContent').style.backgroundColor = "#424242";}catch{};
+                try{event.target.contentDocument.querySelector('bodyContent').style.color = "white";}catch{};
+                try{event.target.contentDocument.querySelector('table').style.color = "black";}catch{};
+        });
+        
+    </script>
+</body>
+</html>
